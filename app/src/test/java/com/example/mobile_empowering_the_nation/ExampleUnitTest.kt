@@ -1,4 +1,4 @@
-package com.example.empowering_the_nation
+package com.example.mobile_empowering_the_nation
 
 import org.junit.Test
 
