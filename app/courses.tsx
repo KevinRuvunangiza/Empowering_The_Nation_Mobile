@@ -1,17 +1,31 @@
+import Animated, { useSharedValue, useAnimatedStyle, withSpring, withDelay } from "react-native-reanimated";
+import { useEffect, useState } from "react";
 import { Text, View, Pressable, StyleSheet, ScrollView, SafeAreaView } from "react-native";
-import NavBar from "@/components/Navbar";
-import { useState } from "react";
+import { Link } from "expo-router";
 import SixWeekComponent from "@/components/SixWeekComponent";
 import SixMonthComponent from "@/components/SixMonthComponent";
 import { courseMonthData } from "@/components/SixMonthComponent";
 import { courseWeekData } from "@/components/SixWeekComponent";
-import { Link } from "expo-router";
+import NavBar from "@/components/Navbar";
 
 export default function Index() {
   const [weekColor, setWeekColor] = useState("black");
   const [monthColor, setMonthColor] = useState("black");
   const [isWeekPrsd, setIsWeekPrsd] = useState(true);
   const [isMonthPrsd, setIsMonthPrsd] = useState(false);
+
+  const jumpValue = useSharedValue(0); // Shared value for animation
+
+  useEffect(() => {
+    // Trigger the jump animation with a delay when the component mounts
+    jumpValue.value = withDelay(300, withSpring(1, { damping: 8, stiffness: 80 }));
+  }, []);
+
+  const animatedJumpStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: jumpValue.value }],
+    };
+  });
 
   function handleWeekSelect() {
     if (!isWeekPrsd) {
@@ -48,19 +62,20 @@ export default function Index() {
           </Pressable>
         </View>
 
+        {/* Use Animated.View to wrap course content and apply animatedJumpStyle */}
         {isWeekPrsd && (
-          <View style={styles.coursesContainer}>
+          <Animated.View style={[styles.coursesContainer, animatedJumpStyle]}>
             {courseWeekData.map((course, index) => (
               <Link
                 key={index}
                 href={{
-                  pathname: '/details',
+                  pathname: "/details",
                   params: {
                     name: course.courseName,
                     price: course.coursePrice,
                     description: course.courseDescription,
-                    image: course.courseImg
-                  }
+                    image: course.courseImg,
+                  },
                 }}
               >
                 <SixWeekComponent
@@ -71,22 +86,22 @@ export default function Index() {
                 />
               </Link>
             ))}
-          </View>
+          </Animated.View>
         )}
 
         {isMonthPrsd && (
-          <View style={styles.coursesContainer}>
+          <Animated.View style={[styles.coursesContainer, animatedJumpStyle]}>
             {courseMonthData.map((course, index) => (
               <Link
                 key={index}
                 href={{
-                  pathname: '/details',
+                  pathname: "/details",
                   params: {
                     name: course.courseName,
                     price: course.coursePrice,
                     description: course.courseDescription,
-                    image: course.courseImg
-                  }
+                    image: course.courseImg,
+                  },
                 }}
               >
                 <SixMonthComponent
@@ -97,9 +112,8 @@ export default function Index() {
                 />
               </Link>
             ))}
-          </View>
+          </Animated.View>
         )}
-
       </ScrollView>
 
       <NavBar />
@@ -113,7 +127,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start", // Align items from top to bottom
     alignItems: "center",
     paddingTop: 50, // Add some space from the top
-    marginTop:60
+    marginTop: 60,
   },
 
   scrollContainer: {
@@ -144,6 +158,6 @@ const styles = StyleSheet.create({
   coursesContainer: {
     marginTop: 40, // Space between tags and content
     width: "90%", // Set a width to prevent content from stretching full screen
-    alignItems: 'flex-start', // Align the course content to the start
+    alignItems: "flex-start", // Align the course content to the start
   },
 });
