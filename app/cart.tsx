@@ -39,7 +39,20 @@ function Cart() {
 
   const calculateTotals = (items: CartItem[]) => { 
     const subtotal = items.reduce((sum, item) => sum + item.price, 0); 
-    const discountAmount = subtotal > 5000 ? subtotal * 0.1 : 0; // 10% discount if total > 5000 
+
+    // Determine discount based on the number of courses
+    let discountPercentage = 0;
+    const itemCount = items.length;
+
+    if (itemCount === 2) {
+      discountPercentage = 0.05; // 5% discount for 2 courses
+    } else if (itemCount === 3) {
+      discountPercentage = 0.10; // 10% discount for 3 courses
+    } else if (itemCount > 3) {
+      discountPercentage = 0.15; // 15% discount for more than 3 courses
+    }
+
+    const discountAmount = subtotal * discountPercentage;
     setTotal(subtotal - discountAmount); 
     setDiscount(discountAmount); 
   }; 

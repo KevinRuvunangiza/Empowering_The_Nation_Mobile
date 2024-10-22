@@ -3,6 +3,7 @@ import { Text, View, Pressable, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import CartModal from "../app/cart"; // Assuming CartModal is in the same directory
+import { Colors } from "@/constants/Colors";
 
 export default function NavBar() {
   const router = useRouter();
@@ -10,20 +11,13 @@ export default function NavBar() {
 
   // Example cart items
   
-
-  const colors = {
-    mainColor: "#1E1E1E",
-    secondaryColor: "#FFFFFF",
-    accentColor: "#FFC107",
-  };
-
   const styles = StyleSheet.create({
     container: {
       position: 'absolute',
       bottom: 0,
       left: 0,
       right: 0,
-      backgroundColor: colors.mainColor,
+      backgroundColor: Colors.light.background,
       justifyContent: 'center',
     },
     view: {
@@ -38,7 +32,7 @@ export default function NavBar() {
       alignItems: "center",
     },
     navText: {
-      color: colors.secondaryColor,
+      color: Colors.light.foreground,
       fontSize: 12,
       marginTop: 10,
     },

@@ -13,7 +13,7 @@ export default function Index() {
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.logoBox}>
             <Image
-              source={require("../assets/images/placeholder.jpg")}
+              source={require("../assets/images/logo.png")}
               style={styles.logo}
             />
           </View>

@@ -26,19 +26,19 @@ export default function Index() {
         {/* IIE MSA Campus */}
         <View style={styles.section}>
           <View style={styles.locationContainer}>
-            <FontAwesome5 name="map-marker-alt" size={40} style={styles.icon} color={Colors.light.tint} />
+            <FontAwesome5 name="map-marker-alt" size={40} style={styles.icon} color={Colors.light.accent} />
             <Text style={styles.headingTxt}>IIE MSA</Text>
             <Pressable onPress={() => handleLinkPress("https://www.iiemsa.co.za")}>
               <Text style={styles.linkTxt}>Visit IIE MSA Location</Text>
             </Pressable>
             <View style={styles.infoRow}>
-              <FontAwesome5 name="phone" size={20} style={styles.iconSmall} color={Colors.light.tint} />
+              <FontAwesome5 name="phone" size={20} style={styles.iconSmall} color={Colors.light.accent} />
               <Pressable onPress={() => handlePhonePress("0119504000")}>
                 <Text style={styles.bodyTxt}>Contact: 011 950 4000</Text>
               </Pressable>
             </View>
             <View style={styles.infoRow}>
-              <FontAwesome5 name="envelope" size={20} style={styles.iconSmall} color={Colors.light.tint} />
+              <FontAwesome5 name="envelope" size={20} style={styles.iconSmall} color={Colors.light.accent} />
               <Pressable onPress={() => handleEmailPress("enquiries@iiemsa.co.za")}>
                 <Text style={styles.bodyTxt}>Email: enquiries@iiemsa.co.za</Text>
               </Pressable>
@@ -147,11 +147,11 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginBottom: 10,
-    color:Colors.light.tint
+    color:Colors.light.accent
   },
   iconSmall: {
     marginRight: 10,
-    color:Colors.light.tabIconSelected
+    color:Colors.light.foreground
   },
   infoRow: {
     flexDirection: "row",

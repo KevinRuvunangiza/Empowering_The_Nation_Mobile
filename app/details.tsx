@@ -91,7 +91,7 @@ export default function Detail() {
       lineHeight: 24, // Improved readability
     },
     buyBtn: {
-      backgroundColor: 'black',
+      backgroundColor: Colors.light.accent,
       paddingVertical: 15,
       paddingHorizontal: 40,
       borderRadius: 30,
@@ -107,7 +107,7 @@ export default function Detail() {
     },
 
     addBtn: {
-      backgroundColor: Colors.light.tabIconSelected,
+      backgroundColor: Colors.light.background,
       paddingVertical: 15,
       paddingHorizontal: 40,
       borderRadius: 30,
