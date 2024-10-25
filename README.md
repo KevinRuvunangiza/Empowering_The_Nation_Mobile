@@ -25,7 +25,8 @@
 
   <h3>2. Extract and Open the Project</h3>
   <ul>
-    <li>After downloading, extract the <code>menu_app</code> folder.</li>
+    <li>After downloading, extract the <code>Empowering_The_Nation_Mobile
+</code> folder.</li>
     <li>Open the folder in <strong>VS Code</strong> or your preferred code editor.</li>
   </ul>
 
